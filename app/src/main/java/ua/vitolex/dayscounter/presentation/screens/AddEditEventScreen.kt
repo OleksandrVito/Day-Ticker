@@ -359,7 +359,7 @@ fun AddEditEventScreen(
                 item{
                     Spacer(modifier = Modifier.height(12.dp))
                     Box(modifier = Modifier.height(60.dp), contentAlignment = Alignment.Center){
-                        BannerAdView("ca-app-pub-3940256099942544/6300978111")
+                        BannerAdView(stringResource(id = R.string.bannerId1))
                     }
                 }
             }

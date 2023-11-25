@@ -128,7 +128,7 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
                             )
                             Spacer(modifier = Modifier.height(10.dp))
                             Box(modifier = Modifier.height(60.dp), contentAlignment = Alignment.Center){
-                                BannerAdView("ca-app-pub-3940256099942544/6300978111")
+                                BannerAdView(stringResource(id = R.string.bannerId1))
                             }
                             Spacer(modifier = Modifier.height(10.dp))
                         }

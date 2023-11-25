@@ -9,4 +9,7 @@
     <string name="are_you_sure_to_delete">Are you sure to delete?</string>
     <string name="delete_event">Delete event</string>
     <string name="title_is_required">Title is required</string>
+    <string name="remaining">"Remaining "</string>
+    <string name="bannerId1" translatable="false">ca-app-pub-1869740172940843/2834720358</string>
+    <string name="bannerId2" translatable="false">ca-app-pub-1869740172940843/3311015466</string>
 </resources>

@@ -11,6 +11,7 @@ data class Event(
     val title: String,
     val description: String,
     val time: String,
-    val date: String
+    val date: String,
+    val notification: Int = -1
 )
 
