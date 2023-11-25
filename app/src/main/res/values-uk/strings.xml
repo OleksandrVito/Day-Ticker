@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Day Ticker</string>
+    <string name="edit_event">Редагування події</string>
+    <string name="add_event">Додавання події</string>
+    <string name="title_placeholder">Назва</string>
+    <string name="description_placeholder">Опис</string>
+    <string name="yes">ТАК</string>
+    <string name="no">НІ</string>
+    <string name="are_you_sure_to_delete">Ви впевнені, що хочете видалити?</string>
+    <string name="delete_event">Видалення події</string>
+    <string name="title_is_required">Назва обов\'язкова</string>
+</resources>

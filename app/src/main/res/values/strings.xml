@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Day Ticker</string>
+    <string name="edit_event">Edd event</string>
+    <string name="add_event">Add event</string>
+    <string name="title_placeholder">Title</string>
+    <string name="description_placeholder">Description</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="are_you_sure_to_delete">Are you sure to delete?</string>
+    <string name="delete_event">Delete event</string>
+    <string name="title_is_required">Title is required</string>
+</resources>
