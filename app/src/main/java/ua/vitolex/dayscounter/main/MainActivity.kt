@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         MobileAds.initialize(this)
         val receiver = ComponentName(applicationContext, StartUpReceiver::class.java)
+        //coment
 
         applicationContext.packageManager?.setComponentEnabledSetting(
             receiver,
