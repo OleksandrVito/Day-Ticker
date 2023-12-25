@@ -1,5 +1,7 @@
 package ua.vitolex.dayscounter.main
 
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,16 +11,15 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
+import ua.vitolex.dayscounter.alarm.StartUpReceiver
 import ua.vitolex.dayscounter.presentation.navigation.SetupNavHost
 import ua.vitolex.dayscounter.ui.theme.DaysCounterTheme
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -27,6 +28,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MobileAds.initialize(this)
+        val receiver = ComponentName(applicationContext, StartUpReceiver::class.java)
+
+        applicationContext.packageManager?.setComponentEnabledSetting(
+            receiver,
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+            PackageManager.DONT_KILL_APP
+        )
         setContent {
             val navController = rememberAnimatedNavController()
             val mainViewModel: MainViewModel = hiltViewModel()
@@ -36,6 +44,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     SetupNavHost(
                         navController = navController,
                         mainViewModel = mainViewModel,

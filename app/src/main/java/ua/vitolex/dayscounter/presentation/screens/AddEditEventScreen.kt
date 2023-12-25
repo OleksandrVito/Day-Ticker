@@ -1,10 +1,14 @@
 package ua.vitolex.dayscounter.presentation.screens
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.pm.PackageManager
 import android.os.Build
 import android.widget.DatePicker
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,6 +22,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -53,7 +58,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ua.vitolex.dayscounter.R
@@ -61,6 +66,7 @@ import ua.vitolex.dayscounter.domain.model.Event
 import ua.vitolex.dayscounter.main.MainViewModel
 import ua.vitolex.dayscounter.presentation.components.BannerAdView
 import ua.vitolex.dayscounter.presentation.components.CustomTextField
+import ua.vitolex.dayscounter.presentation.components.rememberPickerState
 import ua.vitolex.dayscounter.ui.theme.MyBlack
 import ua.vitolex.dayscounter.ui.theme.MyGray
 import ua.vitolex.dayscounter.ui.theme.MyLightGray
@@ -71,6 +77,8 @@ import ua.vitolex.dayscounter.util.scaledSp
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -120,6 +128,14 @@ fun AddEditEventScreen(
     val formatDate = DateTimeFormatter.ofPattern("dd.MM.yy")
     val formatTime = DateTimeFormatter.ofPattern("HH:mm")
 
+    val values = remember { (1..99).map { it.toString() } }
+    val valuesPickerState = rememberPickerState()
+    val units = remember { listOf("minutes", "hours", "days") }
+    val unitsPickerState = rememberPickerState()
+    val openDialog = remember {
+        mutableStateOf(false)
+    }
+
     LaunchedEffect(key1 = true) {
         if (edit) {
             val event = viewModel.getEventById(id)
@@ -135,6 +151,7 @@ fun AddEditEventScreen(
                     time.hour,
                     time.minute
                 )
+                viewModel.onTimeToNotificationChange(timeToNotification = event.notification)
             }
 
         } else {
@@ -144,6 +161,23 @@ fun AddEditEventScreen(
     }
 
     var enabledActionButton by remember { mutableStateOf(true) }
+
+    var hasNotificationPermission by remember {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            mutableStateOf(
+                ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            )
+        } else mutableStateOf(true)
+    }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { isGranted ->
+            hasNotificationPermission = isGranted
+        })
 
     Scaffold(
         topBar = {
@@ -187,6 +221,7 @@ fun AddEditEventScreen(
                                         description = viewModel.description.value,
                                         time = time.toString(),
                                         date = date.toString(),
+                                        notification = viewModel.timeToNotification.value
                                     )
                                 )
                                 enabledActionButton = false
@@ -356,13 +391,24 @@ fun AddEditEventScreen(
                         }
                     }
                 }
-                item{
+                item {
                     Spacer(modifier = Modifier.height(12.dp))
-                    Box(modifier = Modifier.height(60.dp), contentAlignment = Alignment.Center){
+                    Box(modifier = Modifier.heightIn(min = 60.dp), contentAlignment = Alignment.Center) {
                         BannerAdView(stringResource(id = R.string.bannerId1))
                     }
                 }
             }
+
         }
+//        NumberPickerDialog(
+//            openDialog = openDialog,
+//            values = values,
+//            valuesPickerState = valuesPickerState,
+//            units = units,
+//            unitsPickerState = unitsPickerState,
+//            action = {
+//            }
+//        )
     }
 }
+

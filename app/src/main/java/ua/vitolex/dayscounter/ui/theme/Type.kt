@@ -33,30 +33,99 @@ val cairo = FontFamily(
         weight = FontWeight.Bold
     ),
 
-)
+    )
+
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = exo,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
     ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
+
+    bodyMedium = TextStyle(
+        fontFamily = exo,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
+    ),
+//    displayLarge = TextStyle(
+//            fontFamily = exo,
+//    fontWeight = FontWeight.Normal,
+//    fontSize = 16.sp
+//)
+//    ,
+//    displayMedium = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    displaySmall = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    headlineLarge = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    headlineMedium = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    headlineSmall = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    ),
+//    titleLarge = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    ),
+//    titleMedium = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    titleSmall = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//
+//    ,
+//    bodySmall = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    labelLarge = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    labelMedium = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+//    ,
+//    labelSmall = TextStyle(
+//        fontFamily = exo,
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 16.sp
+//    )
+
+
 )

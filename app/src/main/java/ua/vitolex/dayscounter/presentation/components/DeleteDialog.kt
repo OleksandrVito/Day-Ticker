@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -45,7 +46,9 @@ fun DeleteDialog(
 ) {
     if (openDialog.value) {
         AlertDialog(
-            onDismissRequest = { openDialog.value = false }
+            onDismissRequest = { openDialog.value = false },
+            modifier= Modifier.shadow(20.dp, shape = RoundedCornerShape(4.dp), ambientColor = Color.Gray,
+                spotColor= Color.Gray),
         ) {
             Box(
                 modifier = Modifier

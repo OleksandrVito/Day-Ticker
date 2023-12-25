@@ -1,21 +1,24 @@
 package ua.vitolex.dayscounter.main
 
+
+import android.app.Application
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
+import android.content.ComponentName
+import android.content.Context
 import android.icu.util.Calendar
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.intl.Locale
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import ua.vitolex.dayscounter.R
 import ua.vitolex.dayscounter.db.MainDatabase
 import ua.vitolex.dayscounter.domain.model.Event
 import ua.vitolex.dayscounter.presentation.navigation.Screens
@@ -24,6 +27,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import javax.inject.Inject
+
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
@@ -44,6 +48,26 @@ class MainViewModel @Inject constructor(
 
     fun onDescriptionChange(it: String) {
         _description.value = it
+    }
+
+    private val _timeToNotification = mutableStateOf(-1)
+    val timeToNotification: State<Int> = _timeToNotification
+
+    fun onTimeToNotificationChange(values: String? = null , units: String? = null, timeToNotification: Int? = null) {
+        var time = -1
+        if (timeToNotification != null) {
+            time = timeToNotification
+        }
+        if (values != null &&  units != null) {
+            when (units) {
+                "minutes" -> time = values.toInt()
+                "hours" ->  time = values.toInt() * 60
+                "days" -> time = values.toInt() * 24 * 60
+            }
+        }
+
+
+        _timeToNotification.value = time
     }
 
 
@@ -114,7 +138,36 @@ class MainViewModel @Inject constructor(
 
 
     fun validateTitle(title: String) {
-       if (title.isEmpty()) _errorState.value = true else _errorState.value = false
+        if (title.isEmpty()) _errorState.value = true else _errorState.value = false
+    }
+
+
+    fun getTextForMessage (notification:String,  context: Context): String {
+        try {
+            val notificationInt = notification.toInt()
+            val list1 = listOf<Int>(1,21,31,41,51,61,71,81,91)
+            val list2 = listOf<Int>(2,3,4,22,23,24,32,33,34,42,43,44,52,53,54,62,63,64,72,73,74,82,83,84,92,93,94)
+            val text =
+                if (notificationInt % 1440 == 0) {
+                    val days = notificationInt / 1440
+                    if ( days in list1 )  "${notificationInt / 1440} ${context.resources.getString(R.string.day1)}"
+                    else if ( days in list2 ) "${notificationInt / 1440} ${context.resources.getString(R.string.day2)}"
+                    else "${notificationInt / 1440} ${context.resources.getString(R.string.day5)}"
+                } else  if (notificationInt % 60 == 0) {
+                    val hours = notificationInt / 60
+                    if ( hours in list1 )  "${notificationInt / 60} ${context.resources.getString(R.string.hour1)}"
+                    else if ( hours in list2 ) "${notificationInt / 60} ${context.resources.getString(R.string.hour2)}"
+                    else "${notificationInt / 60} ${context.resources.getString(R.string.hour5)}"
+                } else {
+                    val minutes = notificationInt
+                    if ( minutes in list1 )  "${notificationInt} ${context.resources.getString(R.string.minute1)}"
+                    else if ( minutes in list2 ) "${notificationInt} ${context.resources.getString(R.string.minute2)}"
+                    else "${notificationInt} ${context.resources.getString(R.string.minute5)}"
+                }
+            return text
+        } catch (e: NumberFormatException) { null }
+
+        return notification
     }
 }
 

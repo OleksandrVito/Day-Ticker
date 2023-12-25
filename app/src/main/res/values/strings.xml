@@ -10,6 +10,31 @@
     <string name="delete_event">Delete event</string>
     <string name="title_is_required">Title is required</string>
     <string name="remaining">"Remaining "</string>
+    <string name="passed">"Passed "</string>
+    <string name="day1">"day"</string>
+    <string name="day2">"days"</string>
+    <string name="day5">"days"</string>
+    <string name="minute1">"minute"</string>
+    <string name="minute2">"minutes"</string>
+    <string name="minute5">"minutes"</string>
+    <string name="hour1">"hour"</string>
+    <string name="hour2">"hours"</string>
+    <string name="hour5">"hours"</string>
+    <string name="in">"in"</string>
+    <string name="set_a_reminder">Set a reminder not to miss an important event</string>
+    <string name="click_here_to_select_an_event">Click here to select an event</string>
+    <string name="click_here_to_set_the_time">Click here to set the time</string>
+    <string name="event_selection">Event selection</string>
+    <string name="cancel">CANCEL</string>
+    <string name="ok">OK</string>
+    <string name="date_and_time_of_the_event">"date and time of the event: "</string>
+    <string name="date_and_time_reminder">"date and time reminder: "</string>
+    <string name="alarm">Alarm</string>
+    <string name="no_event_yet_start_adding">No events yet. Start adding!</string>
     <string name="bannerId1" translatable="false">ca-app-pub-1869740172940843/2834720358</string>
+<!--    <string name="bannerId1" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
     <string name="bannerId2" translatable="false">ca-app-pub-1869740172940843/3311015466</string>
+<!--    <string name="bannerId2" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
+        <string name="bannerId3" translatable="false">ca-app-pub-1869740172940843/7190928998</string>
+<!--    <string name="bannerId3" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
 </resources>

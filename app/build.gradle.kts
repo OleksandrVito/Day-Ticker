@@ -14,8 +14,8 @@ android {
         applicationId = "ua.vitolex.dayscounter"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -74,6 +74,8 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.46.1")
     kapt ("com.google.dagger:hilt-android-compiler:2.46.1")
     implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation ("androidx.hilt:hilt-work:1.1.0")
+   
 
     // Room
     implementation ("androidx.room:room-runtime:2.6.0")
@@ -92,4 +94,11 @@ dependencies {
 
     //бібліотека для  Google Mobile Ads SDK
     implementation ("com.google.android.gms:play-services-ads:22.5.0")
+
+    // Paper
+    implementation ("io.github.pilgr:paperdb:2.7.2")
+
+    // work manager
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+
 }

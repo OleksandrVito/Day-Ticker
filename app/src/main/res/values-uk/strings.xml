@@ -11,4 +11,25 @@
     <string name="delete_event">Видалення події</string>
     <string name="title_is_required">Назва обов\'язкова</string>
     <string name="remaining">Залишилось </string>
+    <string name="passed">"Минуло "</string>
+    <string name="day1">через день"</string>
+    <string name="day2">"дні"</string>
+    <string name="day5">"днів"</string>
+    <string name="minute1">"хвилина"</string>
+    <string name="minute2">"хвилини"</string>
+    <string name="minute5">"хвилин"</string>
+    <string name="hour1">"година"</string>
+    <string name="hour2">"години"</string>
+    <string name="hour5">"годин"</string>
+    <string name="in">"через"</string>
+    <string name="set_a_reminder">Встановіть нагадування, щоб не пропустити важливу подію</string>
+    <string name="click_here_to_select_an_event">Натисни тут для вибору події</string>
+    <string name="click_here_to_set_the_time">Натисни тут для вибору часу</string>
+    <string name="event_selection">Вибір події</string>
+    <string name="cancel">СКАСУВАТИ</string>
+    <string name="ok">ОК</string>
+    <string name="date_and_time_of_the_event">"дата та час події: "</string>
+    <string name="date_and_time_reminder">"дата та час нагадування: "</string>
+    <string name="alarm">Алярм</string>
+    <string name="no_event_yet_start_adding">Ще немає подій Почни добавляти!</string>
 </resources>
